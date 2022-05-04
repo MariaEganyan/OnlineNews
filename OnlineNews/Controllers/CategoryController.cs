@@ -37,7 +37,7 @@ namespace OnlineNews.Controllers
                 await _categoryservice.AddCategoryAsync(categoryDto);
                 return Ok();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.LogError(ex.ToString());
                 return BadRequest(ex.Message);
@@ -51,10 +51,11 @@ namespace OnlineNews.Controllers
                 await _categoryservice.RemoveCategoryAsync(id);
                 return Ok();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.LogError(ex.ToString());
                 return BadRequest(ex.Message);
             }
+        }
     }
 }
