@@ -6,7 +6,7 @@ namespace OnlineNews.Services
     public class NewService : INewService
     {
         private OnlineNewsPRContext _context;
-        public NewService(ICategoryService categoryService)
+        public NewService()
         {
             _context = new OnlineNewsPRContext();
         }
@@ -26,8 +26,8 @@ namespace OnlineNews.Services
             await _context.News.AddAsync(n);
             _context.SaveChanges();
         }
-        
-        private void Check<T> (T item)
+
+        private void Check<T>(T item)
         {
             if (item == null)
             {
@@ -36,7 +36,7 @@ namespace OnlineNews.Services
         }
         public async Task DeleteAsync(int id)
         {
-            var n=  _context.News.FirstOrDefault(c=>c.Newsid==id);
+            var n = _context.News.FirstOrDefault(c => c.Newsid == id);
             if (n != null)
             {
                 _context.News.Remove(n);
@@ -51,8 +51,8 @@ namespace OnlineNews.Services
 
         public async Task<NewDto> GetByCategoryAsync(string category)
         {
-            var n= _context.News.FirstOrDefault(c=>c.Category.Description==category);
-            if(n != null)
+            var n = _context.News.FirstOrDefault(c => c.Category.Description == category);
+            if (n != null)
             {
                 var ndto = new NewDto()
                 {
@@ -60,6 +60,7 @@ namespace OnlineNews.Services
                     Title = n.Title,
                     Categoryid = n.Categoryid,
                     Content = n.Content,
+                    Datetime = n.Datetime,
                 };
                 return await Task.FromResult(ndto);
             }
@@ -79,7 +80,7 @@ namespace OnlineNews.Services
                         Categoryid = nw.Categoryid,
                         Title = nw.Title,
                     };
-            if(n != null)
+            if (n != null)
             {
                 return await Task.FromResult(n);
             }
