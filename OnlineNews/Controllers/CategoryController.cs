@@ -43,5 +43,18 @@ namespace OnlineNews.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [HttpDelete]
+        public async Task<IActionResult> RemoveAsync(int id)
+        {
+            try
+            {
+                await _categoryservice.RemoveCategoryAsync(id);
+                return Ok();
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                return BadRequest(ex.Message);
+            }
     }
 }
