@@ -35,7 +35,7 @@ namespace OnlineNews.Controllers
             try
             {
                 var c= await _categoryservice.GetById(id);
-                return Ok();
+                return Ok(c);
             }
             catch(Exception ex)
             {
