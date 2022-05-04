@@ -77,6 +77,7 @@ namespace OnlineNews.Controllers
             try
             {
                 await _newservice.DeleteAsync(id);
+                return Ok();
             }
             catch(Exception ex)
             {
