@@ -8,5 +8,6 @@ namespace OnlineNews.Interfaces
         Task RemoveCategoryAsync(int id);
         Task<IEnumerable<CategoryDto>> GetAllCategoriesAsync();
         Task<Category> GetById(int? id);
+        Task UpdateAsync(Category category);
     }
 }

@@ -55,6 +55,11 @@ namespace OnlineNews.Services
             }
             return await Task.FromResult(c);
         }
-        
+
+        public async Task UpdateAsync(Category category)
+        {
+           _context.Update(category);
+            await Task.CompletedTask;
+        }
     }
 }

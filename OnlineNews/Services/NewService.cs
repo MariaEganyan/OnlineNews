@@ -6,9 +6,11 @@ namespace OnlineNews.Services
     public class NewService : INewService
     {
         private OnlineNewsPRContext _context;
-        public NewService()
+        private ICategoryService _categoryService;
+        public NewService(ICategoryService categoryService)
         {
             _context = new OnlineNewsPRContext();
+            _categoryService = categoryService;
         }
         public async Task AddNewAsync(NewDto newDto)
         {
@@ -19,11 +21,20 @@ namespace OnlineNews.Services
                 Title = newDto.Title,
                 Content = newDto.Content,
             };
+            //var c= _categoryService.GetById(newDto.Categoryid).Result;
+            //var cat = new Category()
+            //{
+            //    Categoryid = c.Categoryid,
+            //    Description = c.Description
+            //};
             Check(n.Newsid);
             Check(n.Categoryid);
             Check(n.Title);
             Check(n.Content);
+            
             await _context.News.AddAsync(n);
+           // cat.News.Add(n);
+           //await _categoryService.UpdateAsync(cat);
             _context.SaveChanges();
         }
 
