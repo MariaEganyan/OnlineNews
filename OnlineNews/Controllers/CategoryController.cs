@@ -29,6 +29,20 @@ namespace OnlineNews.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [HttpGet("byid")]
+        public async Task<IActionResult> GetbyId(int id)
+        {
+            try
+            {
+                var c= await _categoryservice.GetById(id);
+                return Ok();
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                return BadRequest(ex.Message);
+            }
+        }
         [HttpPost]
         public async Task<IActionResult> AddAsync(CategoryDto categoryDto)
         {
